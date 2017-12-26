@@ -14,7 +14,7 @@ class CardView extends Component {
   }
 
   render() {
-    let imPath = './images/'
+    let imPath = './images/';
     if (this.props.imageUp) {
       imPath = imPath + this.props.image + '.jpg';
     } else {
@@ -23,7 +23,7 @@ class CardView extends Component {
 
     let className='Card';
     if (this.props.matched) {
-      className = className+" Matched";
+      className = className + ' Matched';
     }
 
     return (
