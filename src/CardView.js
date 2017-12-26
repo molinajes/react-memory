@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Game.css';
 
 class CardView extends Component {
   constructor(props) {
@@ -19,11 +20,11 @@ class CardView extends Component {
   render() {
     let imPath = './images/back.jpg';
     if (this.props.flipped) {
-      imPath = './images/' + this.props.image;
+      imPath = './images/' + this.props.image + ".jpg";
     }
     return (
       <div className="Card">
-        <img src={require(`${imPath}`)} width="100" onClick={this.onClick}/>
+        <img src={require(`${imPath}`)} width="100" alt="" onClick={this.onClick}/>
       </div>
     );      
   };

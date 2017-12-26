@@ -1,0 +1,27 @@
+.Game {
+  text-align: center;
+}
+
+.Game-header {
+  background-color: #222;
+  height: 100px;
+  padding: 20px;
+  color: white;
+}
+
+.Game-title {
+  font-size: 1.5em;
+}
+
+.Game-intro {
+  font-size: large;
+}
+
+.Card {
+  display: inline-block;
+  border-color: #aacccc;
+  border-width: thin;
+  border-style: none;
+  margin-bottom: 10px;      
+  margin-left: 10px;      
+}
