@@ -8,5 +8,5 @@
 ```
 <p>Browse to http://localhost:3000
 <p>Click the cards to flip to images<p>
-<p>
+
 ![Alt text](screenshot.png?raw=true "A simple memory game in React")
