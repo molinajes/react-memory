@@ -60,6 +60,7 @@ class Game extends Component {
   onCardClicked(id,image) {
     if (this.state.clicks === 0 || this.state.clicks === 2) {
       if (this.state.clicks === 2) {
+        clearTimeout(this.timeout);
         this.clearCards(this.state.firstId,this.state.secondId);        
       }
       this.memoryCards.setFlipped(id,true);
@@ -86,7 +87,7 @@ class Game extends Component {
         });
 
       } else {
-        setTimeout(() => { 
+        this.timeout = setTimeout(() => { 
           this.clearCards(this.state.firstId,this.state.secondId);
         },5000); 
       }
