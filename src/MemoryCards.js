@@ -1,33 +1,37 @@
 import shuffle from 'shuffle-array';
 
-
 class MemoryCards {
   constructor() {
     this.cards = [];
     this.NUM_IMAGES = 10;
   }
 
-  generateCards() {
+  generateCardSet() {
+    //
+    // Generate a set of cards with image pairs
+    //
     this.cards = [];
     let id=1;
     for(let i=1; i <= this.NUM_IMAGES; i++) {
       let card1 = {
         id: id,
         image : i,
-        flipped: false,
+        imageUp: false,
         matched: false
       };
       id++;
       let card2 = {
         id: id,
         image : i,
-        flipped: false,
+        imageUp: false,
         matched: false
       };
-      id++;
       this.cards.push(card1);
       this.cards.push(card2);
+      id++;
     }
+
+    // Randomize the card set
     shuffle(this.cards);  
   }
 
@@ -39,20 +43,16 @@ class MemoryCards {
     };
   }
 
-  setFlipped(id,flip) {
-    let card1 = this.getCard(id);
-    card1.flipped = flip;
+  flipCard(id, imageUp) {
+    this.getCard(id).imageUp = imageUp;
   }
 
-  setMatched(id,matched) {
-    let card1 = this.getCard(id);
-    card1.matched = matched;
+  setCardAsMatched(id, matched) {
+    this.getCard(id).matched = matched;
   }
 
-  identicalImages(id1,id2) {
-    let card1 = this.getCard(id1);
-    let card2 = this.getCard(id2);
-    if (card1.image === card2.image) {
+  hasCardsIdenticalImages(id1, id2) {
+    if (this.getCard(id1).image === this.getCard(id2).image) {
       return true;
     } else {
       return false;

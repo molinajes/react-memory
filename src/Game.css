@@ -4,13 +4,17 @@
 
 .Game-header {
   background-color: #222;
-  height: 150px;
+  height: 50px;
   padding: 20px;
   color: white;
 }
 
 .Game-title {
   font-size: 1.5em;
+}
+
+.Game-status {
+  padding: 20px;  
 }
 
 .Game-intro {
@@ -23,9 +27,15 @@
   border-width: 5px;
   border-style: solid;
   margin-bottom: 10px;      
-  margin-left: 10px;      
+  margin-left: 10px;  
+  width: 100px;    
 }
 
 .Matched {
   border-color: #55cc88;
+}
+
+.CardContainer {
+  max-width: 950px;
+  margin: '20px auto';
 }

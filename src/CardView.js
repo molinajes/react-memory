@@ -4,31 +4,30 @@ import './Game.css';
 class CardView extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      flipped: false
-    }
-
     this.onClick = this.onClick.bind(this);
   }
 
   onClick() {
-    if (!this.props.matched && !this.props.flipped) {
+    if (!this.props.matched && !this.props.imageUp) {
       this.props.onClick(this.props.id,this.props.image);      
     }
   }
 
   render() {
-    let imPath = './images/back.jpg';
-    if (this.props.flipped) {
-      imPath = './images/' + this.props.image + ".jpg";
+    let imPath = './images/'
+    if (this.props.imageUp) {
+      imPath = imPath + this.props.image + '.jpg';
+    } else {
+      imPath = imPath + 'back.jpg';
     }
 
-    let className="Card";
+    let className='Card';
     if (this.props.matched) {
-      className=className+" Matched";
+      className = className+" Matched";
     }
+
     return (
-        <img className={className} src={require(`${imPath}`)} width="100" height="100" alt="" onClick={this.onClick}/>
+        <img className={className} src={require(`${imPath}`)} alt='' onClick={this.onClick}/>
     );      
   };
 };

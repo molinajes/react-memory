@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Game.css';
-
-import CardView from './CardView.js';
+import CardView from './CardView';
 import MemoryCards from './MemoryCards';
 
 
@@ -18,11 +17,11 @@ class Game extends Component {
   }
 
   initGame() {
-    this.memoryCards.generateCards();
+    this.memoryCards.generateCardSet();
     this.setState({
       turnNo : 1,
       pairsFound : 0,
-      clicks : 0,
+      numClicksWithinTurn : 0,
       firstId : undefined,
       secondId : undefined
     });
@@ -33,62 +32,62 @@ class Game extends Component {
     let onClick = this.onCardClicked;
     this.memoryCards.cards.forEach(c => {
       let cardView = <CardView key={c.id} 
-      id={c.id} 
-      image={c.image}
-      flipped = {c.flipped}
-      matched = {c.matched} 
-      onClick={onClick}/>;
-      cardViews.push(cardView);
+          id={c.id} 
+          image={c.image}
+          imageUp = {c.imageUp}
+          matched = {c.matched} 
+          onClick={onClick}/>;
+          cardViews.push(cardView);
     });
     return cardViews;
   }
 
   clearCards(id1,id2) {
-    if (this.state.clicks !== 2) {
+    if (this.state.numClicksWithinTurn !== 2) {
       return;
     }
-    this.memoryCards.setFlipped(this.state.firstId,false);
-    this.memoryCards.setFlipped(this.state.secondId,false);
+    this.memoryCards.flipCard(this.state.firstId, false);
+    this.memoryCards.flipCard(this.state.secondId, false);
     this.setState({
       firstId: undefined,
       secondId: undefined,
-      clicks: 0,
+      numClicksWithinTurn: 0,
       turnNo : this.state.turnNo+1
     });
   }
 
   onCardClicked(id,image) {
-    if (this.state.clicks === 0 || this.state.clicks === 2) {
-      if (this.state.clicks === 2) {
+    if (this.state.numClicksWithinTurn === 0 || this.state.numClicksWithinTurn === 2) {
+      if (this.state.numClicksWithinTurn === 2) {
         clearTimeout(this.timeout);
-        this.clearCards(this.state.firstId,this.state.secondId);        
+        this.clearCards(this.state.firstId, this.state.secondId);        
       }
-      this.memoryCards.setFlipped(id,true);
+      this.memoryCards.flipCard(id, true);
       this.setState({
         firstId : id,
-        clicks : 1
+        numClicksWithinTurn : 1
       });
-    } else if (this.state.clicks === 1) {
-      this.memoryCards.setFlipped(id,true);
+    } else if (this.state.numClicksWithinTurn === 1) {
+      this.memoryCards.flipCard(id, true);
       this.setState({
         secondId : id,
-        clicks : 2
+        numClicksWithinTurn : 2
       });
 
-      if (this.memoryCards.identicalImages(id,this.state.firstId)) {
-        this.memoryCards.setMatched(this.state.firstId,true);
-        this.memoryCards.setMatched(id,true);
+      if (this.memoryCards.hasCardsIdenticalImages(id, this.state.firstId)) {
+        this.memoryCards.setCardAsMatched(this.state.firstId, true);
+        this.memoryCards.setCardAsMatched(id, true);
         this.setState({
           pairsFound: this.state.pairsFound+1,
           firstId: undefined,
           secondId: undefined,
           turnNo : this.state.turnNo+1,
-          clicks: 0
+          numClicksWithinTurn: 0
         });
 
       } else {
         this.timeout = setTimeout(() => { 
-          this.clearCards(this.state.firstId,this.state.secondId);
+          this.clearCards(this.state.firstId, this.state.secondId);
         },5000); 
       }
 
@@ -101,22 +100,27 @@ class Game extends Component {
 
   render() {
     let cardViews = this.getCardViews();
-    let header = <div>
-    <p>Turn: {this.state.turnNo}</p>
-    <p>Pairs found: {this.state.pairsFound}</p></div>;
+    let gameStatus = <div className='Game-status'>
+                      <div>Turn: {this.state.turnNo}</div>
+                      <div>Pairs found: {this.state.pairsFound}</div>
+                    </div>;
 
     if (this.state.pairsFound === this.memoryCards.NUM_IMAGES) {
-      header = <div><h1>GAME COMPLETE!</h1>
-      <h3>You used {this.state.turnNo-1} turns</h3>
-      <button onClick={this.onPlayAgain}>Play again?</button></div>;      
+      gameStatus = <div className='Game-status'>
+                    <div>GAME COMPLETE!</div>
+                    <div>You used {this.state.turnNo-1} turns</div>
+                    <div><button onClick={this.onPlayAgain}>Play again?</button></div></div>;      
     }
+
     return (
-      <div className="Game">
-        <header className="Game-header">
-          <div className="Game-title">Memory</div>
-          {header}
+      <div className='Game'>
+        <header className='Game-header'>
+          <div className='Game-title'>A Memory game in React</div>
         </header>
-        <div align='center' style={{maxWidth:950,margin: '20px auto'}}>
+        <div>
+          {gameStatus}
+        </div>
+        <div className='CardContainer'>
           {cardViews}
         </div>
       </div>
