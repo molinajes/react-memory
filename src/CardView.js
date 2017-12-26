@@ -22,10 +22,13 @@ class CardView extends Component {
     if (this.props.flipped) {
       imPath = './images/' + this.props.image + ".jpg";
     }
+
+    let className="Card";
+    if (this.props.matched) {
+      className=className+" Matched";
+    }
     return (
-      <div className="Card">
-        <img src={require(`${imPath}`)} width="100" alt="" onClick={this.onClick}/>
-      </div>
+        <img className={className} src={require(`${imPath}`)} width="100" height="100" alt="" onClick={this.onClick}/>
     );      
   };
 };

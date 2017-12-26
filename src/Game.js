@@ -115,7 +115,7 @@ class Game extends Component {
           <div className="Game-title">Memory</div>
           {header}
         </header>
-        <div align='center' style={{maxWidth:950,margin: '20px auto 0'}}>
+        <div align='center' style={{maxWidth:950,margin: '20px auto'}}>
           {cardViews}
         </div>
       </div>
