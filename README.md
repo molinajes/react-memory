@@ -8,6 +8,7 @@
 ```
 <p>Browse to http://localhost:3000
 <p>Click the cards to flip to images and try to find image pairs<p>
+<p>For an implementation with Redux, see https://github.com/LarsBergqvist/react-redux-memory-game
 
 ![Alt text](screenshot.png?raw=true "A simple memory game in React")
 
