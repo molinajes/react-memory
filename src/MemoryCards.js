@@ -51,7 +51,7 @@ class MemoryCards {
     this.getCard(id).matched = matched;
   }
 
-  hasCardsIdenticalImages(id1, id2) {
+  cardsHaveIdenticalImages(id1, id2) {
     if (this.getCard(id1).image === this.getCard(id2).image) {
       return true;
     } else {

@@ -74,7 +74,7 @@ class Game extends Component {
         numClicksWithinTurn : 2
       });
 
-      if (this.memoryCards.hasCardsIdenticalImages(id, this.state.firstId)) {
+      if (this.memoryCards.cardsHaveIdenticalImages(id, this.state.firstId)) {
         this.memoryCards.setCardAsMatched(this.state.firstId, true);
         this.memoryCards.setCardAsMatched(id, true);
         this.setState({
