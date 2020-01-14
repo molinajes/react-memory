@@ -5,16 +5,19 @@ import MemoryCards from './MemoryCards';
 
 
 class Game extends Component {
+    state = {};
+
   constructor(props) {
     super(props);
     this.onCardClicked = this.onCardClicked.bind(this);
     this.onPlayAgain = this.onPlayAgain.bind(this);
     this.memoryCards = new MemoryCards();
-  }
-
-  componentWillMount() {
     this.initGame();
   }
+
+//  componentWillMount() {
+//    this.initGame();
+//  }
 
   initGame() {
     this.memoryCards.generateCardSet();

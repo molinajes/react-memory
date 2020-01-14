@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+// import logo from './logo.svg';
+// import './App.css';
 import Game from './Game';
 
-class App extends Component {
-
-  render() {
-    return (
-      <Game/>
+function App() {
+  return (
+    <Game/>
     );
-  }
 }
 
 export default App;
