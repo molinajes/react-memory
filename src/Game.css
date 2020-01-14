@@ -14,7 +14,7 @@
 }
 
 .Game-status {
-  padding: 20px;  
+  padding: 20px;
 }
 
 .Game-intro {
@@ -26,9 +26,9 @@
   border-color: white;
   border-width: 5px;
   border-style: solid;
-  margin-bottom: 10px;      
-  margin-left: 10px;  
-  width: 100px;    
+  margin-bottom: 10px;
+  margin-left: 10px;
+  width: 100px;
 }
 
 .Matched {
@@ -38,5 +38,5 @@
 .CardContainer {
   display: inline-block;
   max-width: 950px;
-  margin: '20px auto';
+  margin: "20px auto";
 }
