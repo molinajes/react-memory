@@ -30,10 +30,10 @@ class Game extends Component {
     }
 
     getCardViews() {
-        let cardViews = [];
-        let onClick = this.onCardClicked;
+        const cardViews = [];
+        const onClick = this.onCardClicked;
         this.memoryCards.cards.forEach(c => {
-            let cardView = <CardView key={c.id}
+            const cardView = <CardView key={c.id}
                 id={c.id}
                 image={c.image}
                 imageUp={c.imageUp}
@@ -101,7 +101,7 @@ class Game extends Component {
     }
 
     render() {
-        let cardViews = this.getCardViews();
+        const cardViews = this.getCardViews();
         let gameStatus = <div className='Game-status'>
             <div>Turn: {this.state.turnNo}</div>
             <div>Pairs found: {this.state.pairsFound}</div>
