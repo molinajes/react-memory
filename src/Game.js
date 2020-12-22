@@ -30,17 +30,14 @@ class Game extends Component {
     }
 
     getCardViews() {
-        const cardViews = [];
-        const onClick = this.onCardClicked;
-        this.memoryCards.cards.forEach(c => {
-            const cardView = <CardView key={c.id}
-                id={c.id}
-                image={c.image}
-                imageUp={c.imageUp}
-                matched={c.matched}
-                onClick={onClick} />;
-            cardViews.push(cardView);
-        });
+        const cardViews = this.memoryCards.cards.map(c =>
+            <CardView key={c.id}
+            id={c.id}
+            image={c.image}
+            imageUp={c.imageUp}
+            matched={c.matched}
+            onClick={this.onCardClicked} />
+        );
         return cardViews;
     }
 
