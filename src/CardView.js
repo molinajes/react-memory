@@ -27,7 +27,7 @@ class CardView extends Component {
         }
 
         return (
-            <img className={className} src={require(`${imPath}`)} alt='' onClick={this.onClick} />
+            <img className={className} src={`${imPath}`} alt='' onClick={this.onClick} />
         );
     };
 };
